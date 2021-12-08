@@ -28,14 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeHttpRequests().anyRequest().permitAll();
-        http.addFilter(new CustomAuthenticationFilter(authenticationManager()));
+        http.authorizeRequests().anyRequest().permitAll();
+        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
 
     }
 
     @Bean
     @Override
-    public AuthenticationManager authenticationManager() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
 }
